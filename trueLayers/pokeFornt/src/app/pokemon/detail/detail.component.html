@@ -1,0 +1,44 @@
+<mat-card  fxLayout="column"  fxLayoutGap="20px" class="myCard">
+  <mat-card-header >
+    <div  fxLayout="row wrap" fxFlex="100%" fxFlexFill>
+      <mat-card-title><h1>{{selectedPokemon?.name}}</h1></mat-card-title>
+    </div>
+  </mat-card-header>
+  <mat-card-content  fxLayout="column">
+
+  <div  fxLayout="row wrap" >
+    <div  fxFlex="40%" fxFlex.xs="100">
+      <mat-form-field fxFlex appearance="fill">
+        <mat-label>Select Version</mat-label>
+        <mat-select (selectionChange)="onVersionSelect($event.value)" >
+          <mat-option *ngFor="let version of versions" [value]="version">{{version}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div  fxFlexOffset="10%" fxFlexOffset.xs="0%"fxFlex="40%" fxFlex.xs="100">
+      <mat-form-field fxFlex appearance="fill">
+        <mat-label>Select Language</mat-label>
+        <mat-select (selectionChange)="onLanguageSelect($event.value)" >
+          <mat-option *ngFor="let language of languages" [value]="language">{{language}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+    <div  fxLayout="row wrap" *ngIf="description !=null" >
+      <h3  fxFlex="100%" fxFlexFill  class="description-title">Description</h3>
+      <p   fxFlex="100%" class="description">
+        {{description}}
+      </p>
+    </div>
+
+
+  </mat-card-content>
+  <mat-card-actions>
+    <div fxLayout="row wrap" fxLayoutAlign="center center" *ngIf="(shakespeareDescription$| async)?.success?.total==1">
+        <h3 fxFlex="100%" fxFlexFill class="description-title"> Shakespeare Translation</h3>
+        <p  fxFlex fxFlex="100%"  class="description" >
+          {{(shakespeareDescription$ | async)?.contents?.translated}}
+        </p>
+  </div>
+  </mat-card-actions>
+</mat-card>

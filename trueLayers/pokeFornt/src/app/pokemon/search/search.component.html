@@ -1,0 +1,18 @@
+<div fxLayout fxLayout="column">
+  <form [formGroup]="searchPokemon" (ngSubmit)="onSubmit()">
+    <div fxLayout="row wrap" fxLayoutAlign="center center" fxLayoutGap="5%" class="my-search">
+      <mat-form-field fxFlex="100%" appearance="fill">
+        <mat-label>Insert Pokemon Name</mat-label>
+        <input matInput placeholder="pokemon" formControlName="name" required [matAutocomplete]="auto">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+          <mat-option *ngFor="let pokemonName of filteredNames | async" [value]="pokemonName">
+            {{pokemonName}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <div fxLayout="row wrap" fxAlign="center center">
+        <button [disabled]="!searchPokemon.valid" mat-raised-button type="submit" color="primary">Search</button>
+      </div>
+    </div>
+   </form>
+</div>

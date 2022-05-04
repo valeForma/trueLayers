@@ -1,0 +1,22 @@
+<div fxLayout fxLayout="column">
+<h1>Pick A Pokemon</h1>
+  <mat-table fxFlex="100" fxFlexAlign="center center" [dataSource]="dataSource" class="my-table-container mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">Pokemon Name</th>
+      <td mat-cell *matCellDef="let pokemonName">{{pokemonName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="search">
+      <th mat-header-cell *matHeaderCellDef >search</th>
+      <td mat-cell *matCellDef="let pokemonName"><mat-icon color="primary" (click)="searchPokemon(pokemonName)">search</mat-icon></td>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <div fxFlex="100" fxFlexAlign="center center" class="my-paginator">
+    <mat-paginator   [pageSize]="20" [pageSizeOptions]="[10, 20, 50]"
+                    showFirstLastButtons
+                    aria-label="Select page of PokemonNames">
+    </mat-paginator>
+  </div>
+</div>

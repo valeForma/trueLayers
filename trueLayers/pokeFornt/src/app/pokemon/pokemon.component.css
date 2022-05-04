@@ -1,0 +1,8 @@
+
+.mat-simple-snackbar {
+  display: flex;
+  font-size: 28px !important;
+  min-height: 70px !important;
+  align-items: center !important;
+  justify-content: center !important;
+}

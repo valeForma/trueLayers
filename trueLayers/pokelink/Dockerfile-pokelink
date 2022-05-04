@@ -1,0 +1,9 @@
+FROM maven:3-jdk-11 AS builder
+COPY src /home/app/src
+COPY pom.xml /home/app
+RUN mvn -DskipTests -f /home/app/pom.xml clean package
+FROM openjdk:11-jdk
+COPY --from=builder /home/app/target/pokelink-1.0.0-SNAPSHOT.jar /opt/pokemon/pokelink.jar
+ENTRYPOINT ["java","-jar","-Dspring.profiles.active=docker","/opt/pokemon/pokelink.jar"]
+EXPOSE 8383
+

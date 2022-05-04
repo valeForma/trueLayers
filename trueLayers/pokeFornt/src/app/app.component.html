@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button >
+    <mat-icon (click)="navigateTo('search')">home</mat-icon>
+  </button>
+  <span>Acchiappa a Pikachu</span>
+  <span ></span>
+</mat-toolbar>
+<div fxLayout="column" fxLayoutAlign="center center"  class="main-container">
+  <router-outlet fxLayout="column" fxFlex fxLayoutAlign="center center" ></router-outlet>
+  <div fxLayout="row"  class="my-fab-div">
+    <button class=" mat-elevation-z8 " mat-fab color="primary"  [matMenuTriggerFor]="aboveMenu"> <mat-icon>more_vert</mat-icon></button>
+    <mat-menu #aboveMenu="matMenu" yPosition="above">
+      <button mat-menu-item  color="primary" (click)="navigateTo('list')">
+        <mat-icon >format_list_bulleted</mat-icon>
+        <span>List</span>
+      </button>
+      <button mat-menu-item color="primary" (click)="navigateTo('search')">
+        <mat-icon >search</mat-icon>
+        <span>Search</span>
+      </button>
+    </mat-menu>
+  </div>
+</div>

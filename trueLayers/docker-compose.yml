@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  backend:
+    image: 'pokemon-service:latest'
+    container_name: pokemon-service
+    build:
+      context: ./pokelink
+      dockerfile: Dockerfile-pokelink
+    ports:
+      - target: 8383
+        published: 8383
+        protocol: tcp
+        mode: host
+  frontend:
+    image: 'pokemon-dashboard:latest'
+    container_name: pokemon-dashboard
+    build:
+      context:  ./pokeFornt
+      dockerfile: Dockerfile-poke-front
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+        mode: host
+      
